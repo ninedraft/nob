@@ -46,9 +46,10 @@ func ParsePage(fileName string, re io.Reader) (Page, error) {
 				subPages = append(subPages, ExtractIDFromFileName(link))
 			}
 		case *ast.Heading:
-			if node.Level == 0 && title == "" {
-				title = string(node.Content)
-			}
+			var text = node.GetChildren()[0].(*ast.Text)
+			title = string(text.Literal)
+		default:
+
 		}
 		return ast.GoToNext
 	}
@@ -62,6 +63,5 @@ func ParsePage(fileName string, re io.Reader) (Page, error) {
 }
 
 func DefaultParser() *parser.Parser {
-	var parser = parser.New()
-	return parser
+	return parser.New()
 }
