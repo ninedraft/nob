@@ -29,6 +29,7 @@ func (page Page) String() string {
 	return fmt.Sprintf("%s (%q)", page.Title, page.File)
 }
 
+// TODO: (twentydraft) fix parser: TestParser works, but TestParsePage doesn't pass!
 func ParsePage(fileName string, re io.Reader) (Page, error) {
 	var buf = &bytes.Buffer{}
 	if _, err := buf.ReadFrom(buf); err != nil {
