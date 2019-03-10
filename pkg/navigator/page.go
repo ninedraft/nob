@@ -1,5 +1,7 @@
 package navigator
 
+import "fmt"
+
 type ID string
 
 type Page struct {
@@ -7,4 +9,8 @@ type Page struct {
 	Title string
 	File  string
 	Subs  []ID
+}
+
+func (page Page) String() string {
+	return fmt.Sprintf("%s (%q)", page.Title, page.File)
 }
